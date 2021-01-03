@@ -50,3 +50,10 @@ export const Pre = styled.pre`
   justify-content: center;
   margin-top: -20px;
 `
+
+export const Flex = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`

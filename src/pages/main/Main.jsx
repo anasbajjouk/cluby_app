@@ -2,19 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { fetchProvidedSchema, fetchSchemaData } from '../../api'
 import Card from '../../components/card/Card'
 import Header from '../../components/header/Header'
+import Spinner from '../../components/spinner/Spinner'
 
 const Main = () => {
   const [schemaDetail, setSchemaDetail] = useState({})
   const [schemaData, setSchemaData] = useState({})
   const [listOfSchemas] = useState(['cars', 'uuid', 'questionnaire'])
   const [selectedSchema, setSelectedSchema] = useState('cars')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setLoading(true)
     async function fetchData() {
       const providedSchemaresponse = await fetchProvidedSchema(selectedSchema)
       const schemaDataResponse = await fetchSchemaData(selectedSchema)
       setSchemaDetail(providedSchemaresponse)
       setSchemaData(schemaDataResponse)
+      setLoading(false)
     }
     fetchData()
   }, [selectedSchema])
@@ -56,23 +60,29 @@ const Main = () => {
 
   return (
     <>
-      <Header
-        addForm={addForm}
-        listOfSchemas={listOfSchemas}
-        selectedSchema={selectedSchema}
-        setSelectedSchema={setSelectedSchema}
-        schemaDetail={schemaDetail || {}}
-      />
-      <Card
-        removeForm={removeForm}
-        selectedSchema={selectedSchema}
-        schemaDetail={schemaDetail}
-        schemaData={schemaData}
-        existingData={existingData}
-        formInitialValues={formInitialValues}
-        dataState={dataState}
-        fields={fields}
-      />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <Header
+            addForm={addForm}
+            listOfSchemas={listOfSchemas}
+            selectedSchema={selectedSchema}
+            setSelectedSchema={setSelectedSchema}
+            schemaDetail={schemaDetail || {}}
+          />
+          <Card
+            removeForm={removeForm}
+            selectedSchema={selectedSchema}
+            schemaDetail={schemaDetail}
+            schemaData={schemaData}
+            existingData={existingData}
+            formInitialValues={formInitialValues}
+            dataState={dataState}
+            fields={fields}
+          />
+        </>
+      )}
     </>
   )
 }
