@@ -34,7 +34,6 @@ const Header = ({
           <div className="navbutton" onClick={addForm}>
             Add New Form
           </div>
-          {/* <div className="navbutton">Save changes</div> */}
         </div>
       </NavContainer>
     </HeaderContainer>

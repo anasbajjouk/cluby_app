@@ -33,10 +33,6 @@ export const NavContainer = styled.div`
       padding: 10px;
       background-color: ${({ theme }) => theme.colors.navy};
     }
-
-    & .navbutton:not(:first-child) {
-      margin-left: 50px;
-    }
   }
 
   @media only screen and (max-width: 600px) {
@@ -48,9 +44,6 @@ export const NavContainer = styled.div`
       & .header-left {
         display: flex;
         padding-top: 10px;
-        & .navbutton:not(:first-child) {
-          margin-left: 40px;
-        }
       }
     }
   }

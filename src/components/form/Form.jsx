@@ -3,8 +3,8 @@ import uuid from 'react-uuid'
 import { Formik, Form, FieldArray } from 'formik'
 import { FaTrash, FaCheckCircle } from 'react-icons/fa'
 import FormField from '../formField/FormField'
-import { IconHolder } from '../Elements'
 import { validateSchema } from './validationSchema'
+import { IconHolder } from '../Elements'
 import { CardContainer, CardHeader, CardsGrid } from '../card/Card.styles'
 import { CardBody } from '../card/Card.styles'
 import { storeData } from '../../api'
@@ -25,7 +25,8 @@ const FormList = ({
       onSubmit={(values) => {
         storeData(selectedSchema, values.forms)
       }}
-      render={({ values }) => (
+    >
+      {({ values }) => (
         <Form>
           <FieldArray
             name="forms"
@@ -38,10 +39,15 @@ const FormList = ({
                         <span>#{FormIndex}</span>
 
                         <div style={{ display: 'flex' }}>
-                          <IconHolder type="submit" status={'check'}>
+                          <IconHolder
+                            type="submit"
+                            aria-label="submit"
+                            status={'check'}
+                          >
                             <FaCheckCircle />
                           </IconHolder>
                           <IconHolder
+                            aria-label="removeForm"
                             type="button"
                             onClick={() => removeForm(FormIndex - 1)}
                           >
@@ -69,7 +75,7 @@ const FormList = ({
           />
         </Form>
       )}
-    />
+    </Formik>
   )
 }
 

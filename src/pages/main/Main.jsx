@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, lazy, Suspense } from 'react'
 import { fetchProvidedSchema, fetchSchemaData } from '../../api'
-import Card from '../../components/card/Card'
-import Header from '../../components/header/Header'
-import Spinner from '../../components/spinner/Spinner'
+const CardComponent = lazy(() => import('../../components/card/Card'))
+const HeaderComponent = lazy(() => import('../../components/header/Header'))
+const SpinnerComponent = lazy(() => import('../../components/spinner/Spinner'))
 
 const Main = () => {
   const [schemaDetail, setSchemaDetail] = useState({})
@@ -58,20 +58,22 @@ const Main = () => {
     ''
   )
 
+  const renderLoader = () => <p>Loading...</p>
+
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       {loading ? (
-        <Spinner />
+        <SpinnerComponent />
       ) : (
         <>
-          <Header
+          <HeaderComponent
             addForm={addForm}
             listOfSchemas={listOfSchemas}
             selectedSchema={selectedSchema}
             setSelectedSchema={setSelectedSchema}
             schemaDetail={schemaDetail || {}}
           />
-          <Card
+          <CardComponent
             removeForm={removeForm}
             selectedSchema={selectedSchema}
             schemaDetail={schemaDetail}
@@ -83,7 +85,7 @@ const Main = () => {
           />
         </>
       )}
-    </>
+    </Suspense>
   )
 }
 
