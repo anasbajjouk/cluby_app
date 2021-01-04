@@ -2,6 +2,8 @@
 
 Hi! This is an app made for CLUBY - the idea behind it, is display the data from the endpoint given, store some additional data and have a good control over the actions, error handling, UI responsiveness etc...
 
+# Keep in mind:
+`To run the project in localhost, do not forget to create a .env file where you have to add the env variables, in this case it will be "REACT_APP_API_KEY" and "REACT_APP_URI"`
 
 # Technologies & libraries used:
  - React 
@@ -26,27 +28,27 @@ Hi! This is an app made for CLUBY - the idea behind it, is display the data from
     ├── index.js
 ```
 
-## api
+## Api
 
 Where the API calls and Error Handling  are implemented -  such as 404, 500 etc...
 
-## assets
+## Assets
 
 All type of assets go here, images, global css, audio files etc...
 
-## common
+## Common
 
 All common functions, constants and configs - AKA `utils`
 
-## components
+## Components
 
 Where you can keep your components.
 
-## pages
+## Pages
 
 Where you keep your pages and specific files for the each page, these are also includes smart components. 
 
-## router
+## Router
 
 Where you keep routing setup files. 
 
