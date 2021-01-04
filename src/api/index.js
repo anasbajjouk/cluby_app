@@ -30,7 +30,9 @@ export const storeData = async (schema, data) => {
     )
 
     response.status === 200 &&
-      toast.success('Hooray, record has been added, please refresh the page.')
+      toast.success(
+        'Hooray, record has been added, please refresh the page. Keep in mind the 1st form is the one that will be shown in the PRE section.'
+      )
 
     return response.data
   } catch (error) {

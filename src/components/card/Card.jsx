@@ -13,38 +13,17 @@ const Card = ({
   removeForm,
 }) => {
   return (
-    // <>
-    //   <CardsGrid>
-    //     {existingData && <Pre>{existingData}</Pre>}
+    <CardsGrid>
+      {existingData && <Pre>{existingData}</Pre>}
 
-    //     <FormList
-    //       removeForm={removeForm}
-    //       key={uuid()}
-    //       selectedSchema={selectedSchema}
-    //       fields={fields}
-    //       formInitialValues={formInitialValues}
-    //     />
-    //   </CardsGrid>
-    // </>
-
-    <>
-      <CardsGrid>
-        {existingData && <Pre>{existingData}</Pre>}
-        {formInitialValues &&
-          dataState?.map((_, index) => {
-            return (
-              <FormList
-                removeForm={removeForm}
-                key={uuid()}
-                formIndex={index + 1}
-                selectedSchema={selectedSchema}
-                fields={fields}
-                formInitialValues={formInitialValues}
-              />
-            )
-          })}
-      </CardsGrid>
-    </>
+      <FormList
+        removeForm={removeForm}
+        key={uuid()}
+        selectedSchema={selectedSchema}
+        fields={fields}
+        formInitialValues={formInitialValues}
+      />
+    </CardsGrid>
   )
 }
 
