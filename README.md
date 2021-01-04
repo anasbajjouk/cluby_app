@@ -4,7 +4,6 @@ Hi! This is an app made for CLUBY - the idea behind it, is display the data from
 
 
 # Technologies & libraries used:
-
  - React 
  - React Router 
  - Axios 

@@ -16,6 +16,7 @@ const Header = ({
       <div className="current_schema">
         Current schema:
         <SelectSchema
+          name="select_schema"
           className="select_schema"
           value={selectedSchema || listOfSchemas[0]}
           onChange={(e) => setSelectedSchema(e.target.value)}
