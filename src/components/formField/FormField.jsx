@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, useField } from 'formik'
+import { useField } from 'formik'
 import { ErrorForm } from '../Elements'
 
 const FormField = ({ title, ...props }) => {
@@ -8,7 +8,7 @@ const FormField = ({ title, ...props }) => {
   return (
     <>
       <label htmlFor={props.name}>{title}</label>
-      <input type="text" {...props} />
+      <input {...props} {...field} />
 
       {meta.touched && meta.error && <ErrorForm>{meta.error}</ErrorForm>}
     </>
