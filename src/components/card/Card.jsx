@@ -10,21 +10,20 @@ const Card = ({
   dataState,
   fields,
   selectedSchema,
-  removeForm
+  removeForm,
 }) => {
   return (
     <>
       <CardsGrid>
         {existingData && <Pre>{existingData}</Pre>}
         {formInitialValues &&
-          dataState?.map((dataFields, index) => {
+          dataState?.map((_, index) => {
             return (
               <FormList
-              removeForm={removeForm}
+                removeForm={removeForm}
                 key={uuid()}
-                FormIndex={index + 1}
+                formIndex={index + 1}
                 selectedSchema={selectedSchema}
-                dataFields={dataFields}
                 fields={fields}
                 formInitialValues={formInitialValues}
               />

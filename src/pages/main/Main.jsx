@@ -37,7 +37,7 @@ const Main = () => {
   }, [data, schemaData])
 
   const addForm = () => {
-    setDataState([...dataState, { ...formInitialValues }])
+   setDataState([...dataState, { ...formInitialValues }])
   }
 
   const removeForm = (id) => {

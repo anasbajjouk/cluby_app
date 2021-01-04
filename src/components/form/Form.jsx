@@ -11,7 +11,7 @@ import { storeData } from '../../api'
 
 const FormList = ({
   fields,
-  FormIndex,
+  formIndex,
   formInitialValues,
   selectedSchema,
   removeForm,
@@ -30,13 +30,13 @@ const FormList = ({
         <Form>
           <FieldArray
             name="forms"
-            render={(arrayHelpers) => {
+            render={() => {
               return (
                 <CardsGrid>
-                  {values?.forms?.map((_, idx) => (
+                  {values?.forms?.map((_, index) => (
                     <CardContainer key={uuid()}>
                       <CardHeader>
-                        <span>#{FormIndex}</span>
+                        <span>#{formIndex}</span>
 
                         <div style={{ display: 'flex' }}>
                           <IconHolder
@@ -49,7 +49,7 @@ const FormList = ({
                           <IconHolder
                             aria-label="removeForm"
                             type="button"
-                            onClick={() => removeForm(FormIndex - 1)}
+                            onClick={() => removeForm(formIndex - 1)}
                           >
                             <FaTrash />
                           </IconHolder>
@@ -61,8 +61,9 @@ const FormList = ({
                           <CardBody key={uuid()}>
                             <FormField
                               type="text"
-                              name={`forms.${idx}.${field.id}`}
+                              name={`forms.${formIndex - 1}.${field.id}`}
                               title={field.title}
+                              placeholder={`Enter ${field.title}`}
                             />
                           </CardBody>
                         )
