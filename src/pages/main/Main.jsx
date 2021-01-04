@@ -1,4 +1,5 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react'
+import { toast } from 'react-toastify'
 import { fetchProvidedSchema, fetchSchemaData } from '../../api'
 const CardComponent = lazy(() => import('../../components/card/Card'))
 const HeaderComponent = lazy(() => import('../../components/header/Header'))
@@ -37,7 +38,12 @@ const Main = () => {
   }, [data, schemaData])
 
   const addForm = () => {
-   setDataState([...dataState, { ...formInitialValues }])
+    dataState.length >= 1
+      ? toast.warning(
+          'You already have the main form, feel free to add more sub forms using the icon +'
+        )
+      : dataState.length < 1 &&
+        setDataState([...dataState, { ...formInitialValues }])
   }
 
   const removeForm = (id) => {

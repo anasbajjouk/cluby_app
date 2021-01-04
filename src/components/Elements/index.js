@@ -5,7 +5,11 @@ export const IconHolder = styled.button`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme, status }) =>
-    status === 'check' ? theme.colors.green : theme.colors.red};
+    status === 'check'
+      ? theme.colors.green
+      : status === 'add'
+      ? theme.colors.info
+      : theme.colors.red};
   border: 0;
   outline: 0;
   color: white;

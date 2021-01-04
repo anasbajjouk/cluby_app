@@ -1,7 +1,7 @@
 import React from 'react'
 import uuid from 'react-uuid'
 import { Formik, Form, FieldArray } from 'formik'
-import { FaTrash, FaCheckCircle } from 'react-icons/fa'
+import { FaTrash, FaCheckCircle, FaPlus } from 'react-icons/fa'
 import FormField from '../formField/FormField'
 import { validateSchema } from './validationSchema'
 import { IconHolder } from '../Elements'
@@ -9,19 +9,15 @@ import { CardContainer, CardHeader, CardsGrid } from '../card/Card.styles'
 import { CardBody } from '../card/Card.styles'
 import { storeData } from '../../api'
 
-const FormList = ({
-  fields,
-  formIndex,
-  formInitialValues,
-  selectedSchema,
-  removeForm,
-}) => {
+const FormList = ({ fields, formInitialValues, selectedSchema }) => {
   const regex = fields.map((field) => field.validationRegex)
 
   return (
     <Formik
       initialValues={{ forms: [formInitialValues] }}
       validationSchema={validateSchema(regex)}
+      validateOnChange={true}
+      validateOnBlur={true}
       onSubmit={(values) => {
         storeData(selectedSchema, values.forms)
       }}
@@ -30,13 +26,13 @@ const FormList = ({
         <Form>
           <FieldArray
             name="forms"
-            render={() => {
+            render={(arrayHelpers) => {
               return (
                 <CardsGrid>
                   {values?.forms?.map((_, index) => (
                     <CardContainer key={uuid()}>
                       <CardHeader>
-                        <span>#{formIndex}</span>
+                        <span>#{index + 1}</span>
 
                         <div style={{ display: 'flex' }}>
                           <IconHolder
@@ -47,9 +43,17 @@ const FormList = ({
                             <FaCheckCircle />
                           </IconHolder>
                           <IconHolder
+                            aria-label="addForm"
+                            type="button"
+                            status={'add'}
+                            onClick={() => arrayHelpers.insert(index)}
+                          >
+                            <FaPlus />
+                          </IconHolder>
+                          <IconHolder
                             aria-label="removeForm"
                             type="button"
-                            onClick={() => removeForm(formIndex - 1)}
+                            onClick={() => arrayHelpers.remove(index)}
                           >
                             <FaTrash />
                           </IconHolder>
@@ -61,7 +65,7 @@ const FormList = ({
                           <CardBody key={uuid()}>
                             <FormField
                               type="text"
-                              name={`forms.${formIndex - 1}.${field.id}`}
+                              name={`forms.${index}.${field.id}`}
                               title={field.title}
                               placeholder={`Enter ${field.title}`}
                             />
