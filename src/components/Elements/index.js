@@ -50,9 +50,20 @@ export const Pre = styled.pre`
   box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
   padding: 10px;
   width: 100%;
-  overflow: hidden;
+  overflow: scroll;
   justify-content: center;
+  align-items: center;
+  align-content: center;
   margin-top: -20px;
+
+  @media only screen and (max-width: 600px) {
+    & {
+      align-items: center;
+      align-content: center;
+      overflow: scroll;
+      padding: 10px 20px 10px 80px;
+    }
+  }
 `
 
 export const Flex = styled.div`
